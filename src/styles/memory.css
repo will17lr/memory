@@ -1,0 +1,50 @@
+/* Conteneur principal */
+.mem-wrap { max-width: 720px; margin: 0 auto; padding: 16px; }
+.mem-title { text-align: center; margin-bottom: 16px; }
+
+/* Header + stats */
+.mem-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+.mem-desc { margin: 0; }
+.mem-stats { display: flex; gap: 12px; align-items: center; }
+.mem-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #111827;      /* <-- couleur du texte */
+  font-weight: 500;    /* optionnel, texte plus net */
+  cursor: pointer;
+}
+.mem-btn:hover {
+  background: #f8fafc;
+}
+
+
+/* Grille */
+.mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+/* Carte */
+.mem-card {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  transition: transform .12s ease, background .12s ease, color .12s ease;
+}
+.mem-card.is-disabled { cursor: not-allowed; opacity: 0.9; }
+.mem-card__content { user-select: none; }
+
+/* États visuels */
+.mem-card--hide { background: #f1f5f9; color: #64748b; }
+.mem-card--flip, .mem-card--ok { background: #111827; color: #fff; }
+.mem-card--ok { outline: 2px solid #22c55e; }
+
+/* Message victoire */
+.mem-win { margin-top: 16px; text-align: center; }
+
+/* Responsive simple */
+@media (max-width: 520px) {
+  .mem-grid { grid-template-columns: repeat(3, 1fr); }
+}
