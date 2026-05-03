@@ -1,6 +1,6 @@
 import "./App.css";
-import MemoryGame from "./components/MemoryGame";
+import MemoryFrame from "./components/MemoryFrame";
 
 export default function App() {
-  return <MemoryGame pairs={8} />; // ✅ correspond bien à la prop
+  return <MemoryFrame />;
 }
