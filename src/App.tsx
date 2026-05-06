@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import IntroScreen from "./components/IntroScreen";
-import MemoryGame from "./components/MemoryGame";
+import MemoryFrame from "./components/MemoryFrame";
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -38,7 +38,7 @@ export default function App() {
           showIntro ? "game-wrapper game-waiting" : "game-wrapper game-ready"
         }
       >
-        <MemoryGame pairs={8} />
+        <MemoryFrame />
       </div>
     </>
   );

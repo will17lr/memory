@@ -1,0 +1,264 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.memory-page {
+  width: 100%;
+  height: 100svh;
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+.memory-frame {
+  width: min(100%, 900px);
+  height: calc(100svh - clamp(1rem, 4vw, 3rem));
+
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  border-radius: 28px;
+
+  color: #000000;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.22);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.memory-frame__header {
+  width: 100%;
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.memory-frame__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.memory-frame__title {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.memory-frame__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.memory-frame__label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.memory-frame__select,
+.memory-frame__file,
+.memory-frame__reset-bg {
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.memory-frame__select {
+  padding: 0 0.85rem;
+  cursor: pointer;
+}
+
+.memory-frame__file {
+  padding: 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.memory-frame__file input {
+  display: none;
+}
+
+.memory-frame__reset-bg {
+  padding: 0 0.9rem;
+  cursor: pointer;
+}
+
+.memory-frame__select:hover,
+.memory-frame__file:hover,
+.memory-frame__reset-bg:hover {
+  background: #f8fafc;
+}
+
+.memory-frame__game {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* On masque le deuxième titre du composant MemoryGame pour gagner de la hauteur */
+.memory-frame .mem-title {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .memory-page {
+    padding: 0.5rem;
+  }
+
+  .memory-frame {
+    height: calc(100svh - 1rem);
+    border-radius: 22px;
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .memory-frame__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .memory-frame__title {
+    font-size: 1.35rem;
+  }
+
+  .memory-frame__controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: stretch;
+    gap: 0.5rem;
+  }
+
+  .memory-frame__label {
+    display: none;
+  }
+
+  .memory-frame__select,
+  .memory-frame__file,
+  .memory-frame__reset-bg {
+    width: 100%;
+    min-height: 36px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .memory-frame {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .memory-frame__eyebrow {
+    display: none;
+  }
+
+  .memory-frame__title {
+    font-size: 1.15rem;
+  }
+
+  .memory-frame__controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+.memory-page--animated {
+  background-size: 400% 400%;
+  animation: memoryGradientMove 8s ease infinite;
+}
+
+@keyframes memoryGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================= */
+/* Correctif fond vidéo */
+/* ============================= */
+
+.memory-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* La vidéo sort du flux normal pour ne pas décaler le cadre */
+.memory-page__video {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+}
+
+/* Voile sombre au-dessus de la vidéo */
+.memory-page--video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: rgba(15, 23, 42, 0.22);
+  pointer-events: none;
+}
+
+/* Le cadre du jeu reste au-dessus de la vidéo */
+.memory-frame {
+  position: relative;
+  z-index: 2;
+}
