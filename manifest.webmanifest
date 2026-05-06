@@ -1,0 +1,25 @@
+{
+  "name": "Memory Game",
+  "short_name": "Memory",
+  "description": "Mini-jeu Memory développé avec React, TypeScript et Vite.",
+  "start_url": "/memory/",
+  "scope": "/memory/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/memory/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/memory/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
